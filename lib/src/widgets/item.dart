@@ -41,7 +41,7 @@ class Item extends StatelessWidget {
             showFlag: showFlag,
             useEmoji: useEmoji,
           ),
-          SizedBox(width: 12.0),
+          SizedBox(width: 4.0),
           Text(
             '$dialCode',
             textDirection: TextDirection.ltr,
@@ -73,7 +73,8 @@ class _Flag extends StatelessWidget {
                 : country?.flagUri != null
                     ? Image.asset(
                         country?.flagUri,
-                        width: 32.0,
+                        width: 20.0,
+                        height: 14.0,
                         package: 'intl_phone_number_input',
                       )
                     : SizedBox.shrink(),

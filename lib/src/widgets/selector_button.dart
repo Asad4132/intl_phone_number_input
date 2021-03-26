@@ -62,36 +62,45 @@ class SelectorButton extends StatelessWidget {
                 trailingSpace: selectorConfig.trailingSpace,
                 textStyle: selectorTextStyle,
               )
-        : MaterialButton(
-            key: Key(TestHelper.DropdownButtonKeyValue),
-            padding: EdgeInsets.zero,
-            minWidth: 0,
-            onPressed: countries.isNotEmpty && countries.length > 1 && isEnabled
-                ? () async {
-                    Country selected;
-                    if (selectorConfig.selectorType ==
-                        PhoneInputSelectorType.BOTTOM_SHEET) {
-                      selected = await showCountrySelectorBottomSheet(
-                          context, countries);
-                    } else {
-                      selected =
-                          await showCountrySelectorDialog(context, countries);
-                    }
+        : Container(
+            decoration: BoxDecoration(
+                color: Color(0xff83E5C1),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    bottomLeft: Radius.circular(30))),
+            child: MaterialButton(
+              key: Key(TestHelper.DropdownButtonKeyValue),
+              padding: EdgeInsets.zero,
+              minWidth: 0,
+              onPressed: countries.isNotEmpty &&
+                      countries.length > 1 &&
+                      isEnabled
+                  ? () async {
+                      Country selected;
+                      if (selectorConfig.selectorType ==
+                          PhoneInputSelectorType.BOTTOM_SHEET) {
+                        selected = await showCountrySelectorBottomSheet(
+                            context, countries);
+                      } else {
+                        selected =
+                            await showCountrySelectorDialog(context, countries);
+                      }
 
-                    if (selected != null) {
-                      onCountryChanged(selected);
+                      if (selected != null) {
+                        onCountryChanged(selected);
+                      }
                     }
-                  }
-                : null,
-            child: Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: Item(
-                country: country,
-                showFlag: selectorConfig.showFlags,
-                useEmoji: selectorConfig.useEmoji,
-                leadingPadding: selectorConfig.leadingPadding,
-                trailingSpace: selectorConfig.trailingSpace,
-                textStyle: selectorTextStyle,
+                  : null,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 0.0),
+                child: Item(
+                  country: country,
+                  showFlag: selectorConfig.showFlags,
+                  useEmoji: selectorConfig.useEmoji,
+                  leadingPadding: selectorConfig.leadingPadding,
+                  trailingSpace: selectorConfig.trailingSpace,
+                  textStyle: selectorTextStyle,
+                ),
               ),
             ),
           );
@@ -158,8 +167,7 @@ class SelectorButton extends StatelessWidget {
               return Container(
                 decoration: ShapeDecoration(
                   // ignore: deprecated_member_use_from_same_package
-                  color: selectorConfig.backgroundColor ??
-                      Theme.of(context).canvasColor,
+                  color: Theme.of(context).canvasColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(12),
